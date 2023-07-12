@@ -2,6 +2,7 @@ import hashlib
 import json
 import re
 import uuid
+import time
 
 from requests import Session, HTTPError
 from requests.cookies import cookiejar_from_dict
@@ -96,7 +97,7 @@ class NotionClient(object):
 
     def start_monitoring(self):
         self._monitor.poll_async()
-    
+
     def _fetch_guest_space_data(self, records):
         """
         guest users have an empty `space` dict, so get the space_id from the `space_view` dict instead,
@@ -250,6 +251,8 @@ class NotionClient(object):
         All API requests on Notion.so are done as POSTs (except the websocket communications).
         """
         url = urljoin(API_BASE_URL, endpoint)
+        # sleep 3 seconds to avoid api limit
+        time.sleep(3)
         response = self.session.post(url, json=data)
         if response.status_code == 400:
             logger.error(
