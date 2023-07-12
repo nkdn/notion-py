@@ -252,7 +252,8 @@ class NotionClient(object):
         """
         url = urljoin(API_BASE_URL, endpoint)
         # sleep 3 seconds to avoid api limit
-        time.sleep(3)
+        time.sleep(5)
+        print("call api %s", endpoint)
         response = self.session.post(url, json=data)
         if response.status_code == 400:
             logger.error(
