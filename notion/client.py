@@ -251,9 +251,9 @@ class NotionClient(object):
         All API requests on Notion.so are done as POSTs (except the websocket communications).
         """
         url = urljoin(API_BASE_URL, endpoint)
-        # sleep 3 seconds to avoid api limit
-        time.sleep(5)
-        print("call api %s", endpoint)
+        # add sleep interval to avoid api limitation
+        time.sleep(10)
+        print("call api %s" % endpoint, flush=True)
         response = self.session.post(url, json=data)
         if response.status_code == 400:
             logger.error(
