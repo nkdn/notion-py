@@ -253,7 +253,7 @@ class NotionClient(object):
         url = urljoin(API_BASE_URL, endpoint)
         # add sleep interval to avoid api limitation
         if endpoint == "submitTransaction":
-            time.sleep(120)
+            time.sleep(180)
         else:
             time.sleep(3)
             
