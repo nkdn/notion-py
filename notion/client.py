@@ -253,9 +253,9 @@ class NotionClient(object):
         url = urljoin(API_BASE_URL, endpoint)
         # add sleep interval to avoid api limitation
         if endpoint == "submitTransaction":
-            time.sleep(60)
+            time.sleep(120)
         else:
-            time.sleep(10)
+            time.sleep(3)
             
         print("call api %s" % endpoint, flush=True)
         response = self.session.post(url, json=data)
